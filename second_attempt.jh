@@ -1,0 +1,69 @@
+
+application {
+  config {
+    baseName MyCrud
+    applicationType monolith
+    packageName by.tsishkevich
+    authenticationType jwt
+    prodDatabaseType mysql
+    clientFramework angularX
+  }
+  entities *
+}
+
+
+entity User {
+	name String required
+    password String required
+    email String required
+    language Language
+}
+
+entity Company {
+	name String required
+    address String
+    postalCode Integer
+}
+
+entity Country {
+	countryName String
+}
+
+enum Language {
+    FRENCH, ENGLISH, SPANISH, RUSSIAN
+}
+
+entity Category {
+	name String
+    index Long 
+}
+
+entity Product {
+	name String
+    price Double
+}
+
+relationship ManyToMany {
+Category to Product{category}
+}
+relationship OneToMany {
+Company to User {company}
+}
+
+relationship ManyToOne {
+Company {country} to Country
+}
+
+// Set pagination options
+paginate all with infinite-scroll except Product
+paginate Product with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+
