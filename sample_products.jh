@@ -42,7 +42,7 @@ Company {country} to Country
 }
 
 // Set pagination options
-paginate all with infinite-scroll except Product
+paginate all with infinite-scroll
 paginate Product with pagination
 
 // Use Data Transfer Objects (DTO)
